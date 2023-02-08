@@ -32,6 +32,12 @@ class takeinfo {
         $stm->execute(array($art));
         return $stm->fetchAll();
     }
+    function getUser($user){
+        $sql = "SELECT * FROM user";
+        $stm = $this->db->prepare($sql);
+        $stm->execute(array($user));
+        return $stm->fetchAll();
+    }
 }
 
 

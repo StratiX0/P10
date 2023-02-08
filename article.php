@@ -31,18 +31,50 @@
 
     $info = new takeinfo($conn);
     $art = $info->getArticle(2);
-    foreach ($art as $row){
-        echo $row['article_texte'];
-    }
+    $user = $info->getUser(2);
 ?>
 
 <!---------------------------ACCUEIL------------------------------------------>
 
+
+<?php foreach ($art as $article)
+    {
+        foreach ($user as $ppl)
+        {
+?>
+
 <div class="main-article">
     <div class="title-art">
-        <h4>EA PLAY LIVE : ELECTRONIC ARTS ANNULE SA CONFÉRENCE E3 ET S'EXPLIQUE</h4>
+        <h4></h4>
     </div>
+    <div class="image-art">
+        <!-- PROPRIETE DE L'IMAGE A REMPLACE, C'EST UN PLACEHOLDER -->
+        <img src="assets/thumbs-up-solid.svg" alt="">
+    </div>
+    <div class="date-art">
+        <p>Publié le <?php echo $article['date_publication']; ?></p>
+    </div> 
+    <div class="content-art">
+        <p><?php echo $article['article_texte']; ?></p>
+    </div>
+    <div class="author-art">
+        <p>Écrit par : <?php echo $ppl['email']; ?></p>
+    </div> 
+    <div class="like-art">
+        <p><?php echo $article['like_article']; ?></p>
+        <a href="">
+            <img class="logo-like" src="assets/thumbs-up-solid.svg" alt="like-button">
+        </a>
+    </div>
+
+
 </div>
+
+<?php
+}}
+?>
+
+
 
 <!-----------------------------FOOTER---------------------------------------->
       

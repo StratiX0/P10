@@ -148,6 +148,7 @@ body {
 
 /* --------------------------------------PAGE ARTICLE---------------------------------------------- */
 
+
 .main-article .title-art h4 {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
@@ -157,27 +158,54 @@ body {
 
 .main-article {
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
+    flex-direction: column;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
     height: 100%;
-    margin-bottom: 100px;
+    margin-left: 17.5%;
+    margin-right: 17.5%;
 }
 
+.main-article .author-art {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    display: flex;
+    justify-content: flex-end;
+}
 
+/* CSS NECESSAIRE */
+.image-art img {
+    /* CSS NECESSAIRE */
+    max-width: 675px;
+    max-height: 376px;
+    width: auto;
+    height: auto;
+    /* CSS NECESSAIRE */
+}
 
+.like-art {
+    display: flex;
+    flex-direction: row;
+}
 
+.main-article .date-art, .main-article .like-art {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    justify-content: flex-end;
+}
 
-/* ----------------------------------BAS DE PAGE--------------------------------------------- */
-/* 
-Palette de couleur demandée
+.main-article .logo-like {
+    width: 19px;
+    position: inherit;
+    margin: -5px 0 0 5px;
+}
 
-:root {
-  --color1: #FBFBFB;
-  --color2: #27201F;
-  --color3: #DFC7E1;
-} 
-
-*/
 
 /* Retire les parametres par defaut du html */
 * {
