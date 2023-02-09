@@ -30,8 +30,7 @@
     require_once('config/constants.php');
 
     $info = new takeinfo($conn);
-    $art = $info->getArticle(2);
-    $user = $info->getUser(2);
+    $art = $info->getArticle(1);
 ?>
 
 <!---------------------------ACCUEIL------------------------------------------>
@@ -39,8 +38,6 @@
 
 <?php foreach ($art as $article)
     {
-        foreach ($user as $ppl)
-        {
 ?>
 
 <div class="main-article">
@@ -58,7 +55,7 @@
         <p><?php echo $article['article_texte']; ?></p>
     </div>
     <div class="author-art">
-        <p>Écrit par : <?php echo $ppl['email']; ?></p>
+        <p>Écrit par : <?php echo $article['email']; ?></p>
     </div> 
     <div class="like-art">
         <p><?php echo $article['like_article']; ?></p>
@@ -71,7 +68,7 @@
 </div>
 
 <?php
-}}
+break;} 
 ?>
 
 

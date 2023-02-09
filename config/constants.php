@@ -22,25 +22,6 @@ define('DB_PASSWORD', 'root');
 define('DB_NAME', 'gcnews_bdd_v1');
 
 
-class takeinfo {
-    function __construct($db){
-        $this->db = $db;
-    }
-    function getArticle($art){
-        $sql = "SELECT * FROM article";
-        $stm = $this->db->prepare($sql);
-        $stm->execute(array($art));
-        return $stm->fetchAll();
-    }
-    function getUser($user){
-        $sql = "SELECT * FROM user";
-        $stm = $this->db->prepare($sql);
-        $stm->execute(array($user));
-        return $stm->fetchAll();
-    }
-}
-
-
 try {
     $connString = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8";
     $conn = new PDO($connString, DB_USERNAME, DB_PASSWORD);
@@ -52,4 +33,20 @@ catch(PDOException $e)
    {
    echo "Connection failed: " . $e->getMessage();
    }
+
+
+class takeinfo {
+    function __construct($db){
+        $this->db = $db;
+    }
+    function getArticle($art){
+        $idauthor = "SELECT * FROM article a INNER JOIN user u ON a.id_auteur = u.id_user";
+        $stm = $this->db->prepare($idauthor);
+        $stm->execute(array($art));
+        return $stm->fetchAll();
+    }
+}
+
+
+
 ?>
