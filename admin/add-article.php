@@ -13,17 +13,17 @@ if(isset($_POST['send']) && $_POST['send'] == 'Envoyer')
     $query = $conn->prepare("INSERT INTO `article`(`id_article`, `id_auteur`, `titre_article`, `description_article`, `image_article`, `classe_article`, `article_texte`, `date_publication`, `mots_cles_article`, `categorie_article`, `like_article`) VALUES (':id_article', ':id_auteur', ':titre_article', ':description_article', ':image_article', ':classe_article', ':article_texte', ':date_publication', ':mots_cles_article', ':categorie_article', ':like_article');");
 
     $query->execute(array(
-        ':id_article' => $id_article = 'id_article', 
-        ':id_auteur' => $id_auteur = 'id_auteur', 
-        ':titre_article' => $titre_article = 'titre_article', 
-        ':description_article'=> $description_article = 'description_article', 
-        ':image_article' => $image_article = 'image_article', 
-        ':classe_article' => $classe_article = 'classe_article', 
-        ':article_texte' => $article_texte = 'article_texte', 
-        ':date_publication' => $date_publication = 'date_publication', 
-        ':mots_cles_article' => $mots_cles_article = 'mots_cles_article', 
-        ':categorie_article' => $categorie_article = 'categorie_article', 
-        ':like_article' =>  $like_article = 'like_article',
+        ':id_article' => null, 
+        ':id_auteur' => null, 
+        ':titre_article' => $_POST['titre_article'], 
+        ':description_article'=> $_POST['description_article'], 
+        ':image_article' => $_POST['article'], 
+        ':classe_article' => $_POST['classe'], 
+        ':article_texte' => $_POST['article_texte'], 
+        ':date_publication' => null, 
+        ':mots_cles_article' => null, 
+        ':categorie_article' => $_POST['cat'], 
+        ':like_article' =>  null,
     ));
 }
 
@@ -85,7 +85,7 @@ if(isset($_POST['send']) && $_POST['send'] == 'Envoyer')
         <!-- DESCRIPTION -->
         <div class="des-input">
             <label for="comment"><h5>Description</h5></label>
-            <textarea class="form-control" rows="5" id="comment" name="description_article"></textarea>
+            <textarea class="form-control" rows="5" id="comment" name="article"></textarea>
         </div>
 
         <div class="row">
@@ -140,7 +140,7 @@ if(isset($_POST['send']) && $_POST['send'] == 'Envoyer')
 
         <!-- IMAGE -->
         <div class="img-input">
-            <label for="imageinp"><input type="file" id="imageinp" value="image_article"></label>
+            <label for="imageinp"><input type="file" id="imageinp" value="image_article" name="image"></label>
         </div>
 
 
