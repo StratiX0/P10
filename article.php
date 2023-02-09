@@ -1,3 +1,17 @@
+<?php
+    include 'partials/header.php';
+    require_once('config/constants.php');
+
+    $info = new takeinfo($conn);
+    $art = $info->getArticle(7);
+
+    // if(isset($_POST['btn-like'])){
+    //     $query = $conn ->prepare
+    // }
+    
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -25,13 +39,7 @@
 </head>
 
 <body>
-<?php
-    include 'partials/header.php';
-    require_once('config/constants.php');
 
-    $info = new takeinfo($conn);
-    $art = $info->getArticle(1);
-?>
 
 <!---------------------------ACCUEIL------------------------------------------>
 
@@ -42,11 +50,11 @@
 
 <div class="main-article">
     <div class="title-art">
-        <h4></h4>
+        <h4><?php echo $article['titre_article']; ?></h4>
     </div>
     <div class="image-art">
         <!-- PROPRIETE DE L'IMAGE A REMPLACE, C'EST UN PLACEHOLDER -->
-        <img src="assets/thumbs-up-solid.svg" alt="">
+        <img src="<?php echo $article['titre_article']; ?>" alt="Image <?php echo $article['mots_cles_article']; ?>">
     </div>
     <div class="date-art">
         <p>Publié le <?php echo $article['date_publication']; ?></p>
@@ -59,9 +67,7 @@
     </div> 
     <div class="like-art">
         <p><?php echo $article['like_article']; ?></p>
-        <a href="">
-            <img class="logo-like" src="assets/thumbs-up-solid.svg" alt="like-button">
-        </a>
+        <img type ="button" id="likeButton" onclick="like()" class="logo-like" src="assets/thumbs-up-solid.svg" alt="like-button">
     </div>
 
 
@@ -79,5 +85,7 @@ break;}
 include 'partials/footer.php';
 ?>
 
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script src="JS/index.js"></script>
 </body>
 </html>

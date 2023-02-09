@@ -180,8 +180,8 @@ body {
 /* CSS NECESSAIRE */
 .image-art img {
     /* CSS NECESSAIRE */
-    max-width: 675px;
-    max-height: 376px;
+    max-width: auto;
+    max-height: auto;
     width: auto;
     height: auto;
     /* CSS NECESSAIRE */
@@ -200,10 +200,16 @@ body {
     justify-content: flex-end;
 }
 
+.main-article button {
+    border: none;
+    background: none;
+}
+
 .main-article .logo-like {
     width: 19px;
     position: inherit;
-    margin: -5px 0 0 5px;
+    margin: -2px 0 0 10px;
+    height: fit-content;
 }
 
 

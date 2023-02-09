@@ -1,3 +1,35 @@
+<?php 
+require_once('config/constants.php');
+
+if(isset($_POST['send']) && $_POST['send'] == 'Envoyer')
+{
+    echo '<pre>';
+    print_r($_POST);
+    echo '</pre>'; 
+    //vérification que les champs soient corrects 
+
+
+    //si les champs sont corrects, alors intégration en bdd : 
+    $query = $conn->prepare("INSERT INTO `article`(`id_article`, `id_auteur`, `titre_article`, `description_article`, `image_article`, `classe_article`, `article_texte`, `date_publication`, `mots_cles_article`, `categorie_article`, `like_article`) VALUES (':id_article', ':id_auteur', ':titre_article', ':description_article', ':image_article', ':classe_article', ':article_texte', ':date_publication', ':mots_cles_article', ':categorie_article', ':like_article');");
+
+    $query->execute(array(
+        ':id_article' => $id_article = 'id_article', 
+        ':id_auteur' => $id_auteur = 'id_auteur', 
+        ':titre_article' => $titre_article = 'titre_article', 
+        ':description_article'=> $description_article = 'description_article', 
+        ':image_article' => $image_article = 'image_article', 
+        ':classe_article' => $classe_article = 'classe_article', 
+        ':article_texte' => $article_texte = 'article_texte', 
+        ':date_publication' => $date_publication = 'date_publication', 
+        ':mots_cles_article' => $mots_cles_article = 'mots_cles_article', 
+        ':categorie_article' => $categorie_article = 'categorie_article', 
+        ':like_article' =>  $like_article = 'like_article',
+    ));
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -29,11 +61,11 @@
 <!---------------------------NAVBAR------------------------------------------>
 
 <?php
-include '../admin/partials/header.php';
+// include '../admin/partials/header.php';
+
 ?>
 
 <!----------------------------------------MAIN CONTENT--------------------------------------------------------->
-
 
     <!-- TITRE DE PAGE -->
     <h2 class="title-admin">BIENVENUE</h2>
@@ -41,40 +73,35 @@ include '../admin/partials/header.php';
     <!-- CARTES -->
 
     <div class="container">
-     <form>
+     <form method="post" action="" enctype="multipart/form-data">
 
         <!-- TITRE -->
         <div class="title-input">
-            <label for="title"><h5>Titre</h5></label>
-            <input type="text" class="form-control" id="title">
+            <label for="titre"><h5>Titre</h5></label>
+            <input type="text" class="titre" id="titre" placeholder="Maximum 150 caractères." name="titre_article">
         </div>
 
 
         <!-- DESCRIPTION -->
         <div class="des-input">
             <label for="comment"><h5>Description</h5></label>
-            <textarea class="form-control" rows="5" id="comment"></textarea>
+            <textarea class="form-control" rows="5" id="comment" name="description_article"></textarea>
         </div>
 
         <div class="row">
 
             <!-- SUJET -->
-            <div class = "col-md-auto">
+            <div class = "col-md-auto m-5">
             <div class = "cat-input">
                 <label for="cat"><h5>Catégorie :</h5></label>
-                    <select id="cat" name="cat">
-                        <option value="jv">Jeu-vidéo</option>
-                        <option value="esp">Esport</option>
-                        <option value="pol">Politique</option>
-                        <option value="desi">Design</option>
-                        <option value="bus">Business</option>
+                    <select id="cat" name="cat" name="subject">
+                        <option value="jeux_videos">Jeux vidéos</option>
+                        <option value="e_sport">E-sport</option>
+                        <option value="business">Business</option>
                     </select>
                 </div>
             </div>
-            <div class="col-md-auto"></div>
-            <div class="col-md-auto"></div>
-            <div class="col-md-auto"></div>
-            <div class="col-md-auto"></div>
+
 
             <!-- CLASSE -->
             <div class="col-md-auto">
@@ -84,21 +111,21 @@ include '../admin/partials/header.php';
             </div>
 
             <div class="col-md-auto">
-                <input class="form-check-input" type="radio" name="classe" id="gtech">
+                <input class="form-check-input" type="radio" name="classe" id="gtech" checked value="gtech">
                 <label class="form-check-label" for="gtech">
                   G. Tech
                 </label>
             </div>
 
             <div class="col-md-auto">
-                <input class="form-check-input" type="radio" name="classe" id="gart">
+                <input class="form-check-input" type="radio" name="classe" id="gart" value="gart">
                 <label class="form-check-label" for="gart">
                   G. Art
                 </label>
             </div>
 
             <div class="col-md-auto">
-                <input class="form-check-input" type="radio" name="classe" id="gbusiness">
+                <input class="form-check-input" type="radio" name="classe" id="gbusiness" value="gbusiness">
                 <label class="form-check-label" for="gbusiness">
                   G. Business
                 </label>
@@ -113,13 +140,13 @@ include '../admin/partials/header.php';
 
         <!-- IMAGE -->
         <div class="img-input">
-            <label for="imageinp"><input type="file" id="imageinp"></label>
+            <label for="imageinp"><input type="file" id="imageinp" value="image_article"></label>
         </div>
 
 
         <!-- SUBMIT -->
         <div class="submit-btn">
-            <button type="submit">Envoyer</button>
+            <input type="submit" value="Envoyer" name="send">
         </div>
     </form>
     </div>

@@ -16,9 +16,9 @@
 // $password = "root";
 
 define('ROOT_URL', 'http://localhost/gcnews/');
-define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'root');
+define('DB_HOST', 'mysql-gcnews.alwaysdata.net');
+define('DB_USERNAME', 'gcnews');
+define('DB_PASSWORD', '359D655A');
 define('DB_NAME', 'gcnews_bdd_v1');
 
 
@@ -40,7 +40,7 @@ class takeinfo {
         $this->db = $db;
     }
     function getArticle($art){
-        $idauthor = "SELECT * FROM article a INNER JOIN user u ON a.id_auteur = u.id_user";
+        $idauthor = "SELECT * FROM article a INNER JOIN user u ON a.id_auteur = u.id_user WHERE id_article = $art";
         $stm = $this->db->prepare($idauthor);
         $stm->execute(array($art));
         return $stm->fetchAll();
